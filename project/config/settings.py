@@ -105,7 +105,7 @@ STATICFILES_STORAGE = os.environ.get('STATICFILES_STORAGE', 'whitenoise.django.G
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Admin',
-    'MENU': (,)
+    'MENU': tuple(),
 }
 
 REST_FRAMEWORK = {
