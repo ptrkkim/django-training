@@ -9,8 +9,6 @@
 - Login/logout/reset password/forgot password API endpoints
 - Django Suit theme for the Django Admin
 
-# How to Use this Kit
-
 # What's missing?
 - Vanilla signup/login/forgot password/reset password
 - Makefile for tests and deployment
