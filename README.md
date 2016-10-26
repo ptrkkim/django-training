@@ -14,6 +14,7 @@
 - Makefile for tests and deployment
 - How to deploy to Heroku
 - Development process
+- Project structure - where to add new apps
 
 # Dev Setup
 0. Clone this repo: `git clone git@github.com:simplefractal/fractal-django-genie.git`;
