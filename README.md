@@ -9,12 +9,15 @@
 - Login/logout/reset password/forgot password API endpoints
 - Django Suit theme for the Django Admin
 
+# How to Use this Kit
+
 # What's missing?
 - Vanilla signup/login/forgot password/reset password
 - Makefile for tests and deployment
 
 # Dev Setup
-1. Clone the repo: `git clone git@github.com:simplefractal/{{ REPO_NAME }}.git`;
+0. Clone this repo: `git clone git@github.com:simplefractal/fractal-django-genie.git`;
+1. Create a new repo on GitHub, change the local git origin to point to the new repo and the push.
 2. Create a virtualenv for Python 3.5: `mkvirtualenv {{ VIRTUAL_ENV_NAME }} -p /usr/bin/python3.5`;
 3. Copy default postactivate: `cp contrib/proj_postactivate /your-virtualenvs-dir/{{ VIRTUAL_ENV_NAME }}/bin/postactivate`;
 4. Edit `/your-virtualenvs-dir/hs-oap/bin/postactivate` for you custom env config (e.g. update DATABASE_URL) and re-run the `workon` command;
@@ -24,13 +27,15 @@
 8. Migrations: `python manage.py migrate`
 9. Create admin user: `python manage.py createsuperuser`
 10. Runserver: `python manage.py runserver`
-11. Run django-rq for email sending: `python manage.py rqworker high low default`
-12. Running the tests (you must run it inside `project` directory): `pytest'
 
+# Asynchronous Tasks
+Run django-rq for email sending: `python manage.py rqworker high low default`
+
+# How to run the tests
+From inside the `project` directory, run `pytest'.
 
 # Alternative env setup
-1. You can also create a `.env` file inside of `config` similar to `.env-example`
-
+You can also create a `.env` file inside of `config` similar to `.env-example`
 
 # Git Workflow
 0. Create feature branch off of `develop` with the `feature` prefix such as `feature/sso-login`
