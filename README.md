@@ -1,3 +1,14 @@
+# What's In This Starter Kit?
+- Latest Django
+- Python 3
+- Heroku deployment-ready
+- Redis and Django-RQ for asynchronous tasks
+- Sentry for exception tracking
+- Sendgrid for email sending
+- Automated testing configured
+- Login/logout/reset password/forgot password API endpoints
+- Django Suit theme for the Django Admin
+
 # Dev Setup
 1. Clone the repo: `git clone git@github.com:simplefractal/{{ REPO_NAME }}.git`;
 2. Create a virtualenv for Python 3.5: `mkvirtualenv {{ VIRTUAL_ENV_NAME }} -p /usr/bin/python3.5`;
