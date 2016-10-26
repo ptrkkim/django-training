@@ -9,11 +9,8 @@ from src.core_auth.views import admin_login
 urlpatterns = [
     url(r'^admin/login/$', admin_login),
     url(r'^admin/', admin.site.urls),
-    url(r'^nested_admin/', include('nested_admin.urls')),
-    url(r'^api/', include('src.api.urls', namespace='api')),
     url(r'^auth/', include('src.core_auth.urls', namespace='core_auth')),
     url(r'^account/', include('src.core_auth.account_urls', namespace='account')),
-
 ]
 
 if settings.DEBUG:
