@@ -1,10 +1,10 @@
 # Dev Setup
-1. Clone the repo: `git clone git@github.com:simplefractal/hs-oaq.git`;
-2. Create a virtualenv for Python 3.5: `mkvirtualenv hs-oaq -p /usr/bin/python3.5`;
-3. Copy default postactivate: `cp contrib/proj_postactivate /your-virtualenvs-dir/hs-oaq/bin/postactivate`;
-4. Edit `/your-virtualenvs-dir/hs-oap/bin/postactivate` for you custom env config and re-run the `workon` command;
+1. Clone the repo: `git clone git@github.com:simplefractal/{{ REPO_NAME }}.git`;
+2. Create a virtualenv for Python 3.5: `mkvirtualenv {{ VIRTUAL_ENV_NAME }} -p /usr/bin/python3.5`;
+3. Copy default postactivate: `cp contrib/proj_postactivate /your-virtualenvs-dir/{{ VIRTUAL_ENV_NAME }}/bin/postactivate`;
+4. Edit `/your-virtualenvs-dir/hs-oap/bin/postactivate` for you custom env config (e.g. update DATABASE_URL) and re-run the `workon` command;
 5. Install the packages: `pip install -r dev-requirements.txt`;
-6. Create postgres db: `createdb hs_oaq`;
+6. Create postgres db: `createdb {{ DATABASE_NAME }}`;
 7. Install redis ([click here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis) if you're using Ubuntu)
 8. Migrations: `python manage.py migrate`
 9. Create admin user: `python manage.py createsuperuser`
