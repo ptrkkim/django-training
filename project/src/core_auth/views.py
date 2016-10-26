@@ -55,7 +55,6 @@ class PasswordResetView(APIView):
             new_password = User.objects.make_random_password()
             user.force_new_password(new_password)
             user.save()
-            notify_new_password_for_user(user, new_password)
 
         return Response()
 

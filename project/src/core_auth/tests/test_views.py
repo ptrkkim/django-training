@@ -139,7 +139,6 @@ class PasswordResetViewTests(TestCase):
         assert 'email' in content
 
     @patch.object(User.objects, 'make_random_password', Mock(return_value='123'))
-    @patch('src.core_auth.views.notify_new_password_for_user', Mock())
     def test_update_user_password(self):
         response = self.client.post(self.url, self.data)
 
@@ -149,14 +148,6 @@ class PasswordResetViewTests(TestCase):
         assert self.user.needs_change_password is True
 
     @patch.object(User.objects, 'make_random_password', Mock(return_value='123'))
-    @patch('src.core_auth.views.notify_new_password_for_user')
-    def test_notifies_user_for_new_password(self, mocked_service):
-        response = self.client.post(self.url, self.data)
-
-        mocked_service.assert_called_once_with(self.user, '123')
-
-    @patch.object(User.objects, 'make_random_password', Mock(return_value='123'))
-    @patch('src.core_auth.views.notify_new_password_for_user')
     def test_does_not_change_user_if_wrong_email(self, mocked_service):
         self.data['email'] = 'email@other.com'
 
