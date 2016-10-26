@@ -9,6 +9,10 @@
 - Login/logout/reset password/forgot password API endpoints
 - Django Suit theme for the Django Admin
 
+# What's missing?
+- Vanilla signup/login/forgot password/reset password
+- Makefile for tests and deployment
+
 # Dev Setup
 1. Clone the repo: `git clone git@github.com:simplefractal/{{ REPO_NAME }}.git`;
 2. Create a virtualenv for Python 3.5: `mkvirtualenv {{ VIRTUAL_ENV_NAME }} -p /usr/bin/python3.5`;
