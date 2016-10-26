@@ -38,7 +38,6 @@ THIRD_PARTY_LIBS = [
     'corsheaders',
     'django_extensions',
     'suit',
-    'nested_admin',
     'naomi',
     'rest_framework',
     'rest_framework.authtoken',
@@ -46,10 +45,7 @@ THIRD_PARTY_LIBS = [
 ]
 
 PROJECT_LIBS = [
-    'src.client',
     'src.core_auth',
-    'src.survey',
-    'src.mailing',
 ]
 
 INSTALLED_APPS = THIRD_PARTY_LIBS + DJANGO_APPS + PROJECT_LIBS
@@ -105,7 +101,6 @@ STATICFILES_STORAGE = os.environ.get('STATICFILES_STORAGE', 'whitenoise.django.G
 
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Admin',
-    'MENU': tuple(),
 }
 
 REST_FRAMEWORK = {
@@ -133,8 +128,3 @@ RQ_QUEUES = {
         'DEFAULT_TIMEOUT': 500,
     },
 }
-
-
-DEFAULT_SURVEY_DATA_FILE = BASE_DIR.child(
-    'src', 'survey', 'admin', 'data', 'default_survey.yaml'
-)
