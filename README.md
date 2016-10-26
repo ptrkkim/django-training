@@ -33,7 +33,7 @@
 Run django-rq for email sending: `python manage.py rqworker high low default`
 
 # How to run the tests
-From inside the `project` directory, run `pytest'.
+From inside the `project` directory, run `pytest`.
 
 # Alternative env setup
 You can also create a `.env` file inside of `config` similar to `.env-example`
