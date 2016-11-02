@@ -87,7 +87,6 @@ DATABASES = {
 
 AUTH_USER_MODEL = 'core_auth.User'
 AUTH_PASSWORD_VALIDATORS = []
-LOGIN_REDIRECT_URL = 'core_auth:login_redirect'
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'

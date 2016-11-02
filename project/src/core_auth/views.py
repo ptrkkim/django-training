@@ -56,15 +56,3 @@ class PasswordResetView(APIView):
             user.save()
 
         return Response()
-
-
-def admin_login_redirect_view(request):
-    redirect_url = '/'
-    if request.user.is_staff:
-        redirect_url = reverse('admin:survey_survey_changelist')
-    return redirect(redirect_url)
-
-
-def admin_login(*args, **kwargs):
-    kwargs['extra_context'] = {REDIRECT_FIELD_NAME: reverse(settings.LOGIN_REDIRECT_URL)}
-    return admin.site.login(*args, **kwargs)
