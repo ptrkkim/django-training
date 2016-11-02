@@ -9,7 +9,6 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, logout
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
-from src.mailing.email_sending import notify_new_password_for_user
 from src.core_auth.models import User
 from src.core_auth.serializers import ChangePasswordSerializer, UserSerializer, RequestPasswordChangeSerializer
 
@@ -55,7 +54,6 @@ class PasswordResetView(APIView):
             new_password = User.objects.make_random_password()
             user.force_new_password(new_password)
             user.save()
-            notify_new_password_for_user(user, new_password)
 
         return Response()
 
