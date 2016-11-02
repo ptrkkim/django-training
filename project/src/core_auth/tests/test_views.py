@@ -147,8 +147,9 @@ class PasswordResetViewTests(TestCase):
         assert self.user.check_password('123') is True
         assert self.user.needs_change_password is True
 
-    @patch.object(User.objects, 'make_random_password', Mock(return_value='123'))
+    @patch.object(User.objects, 'make_random_password')
     def test_does_not_change_user_if_wrong_email(self, mocked_service):
+        mocked_service.return_value = '123'
         self.data['email'] = 'email@other.com'
 
         response = self.client.post(self.url, self.data)
