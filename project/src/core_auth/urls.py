@@ -7,5 +7,4 @@ from src.core_auth import views
 urlpatterns = [
     url(r'^login/$', ObtainAuthToken.as_view(), name='login'),
     url(r'^logout/$', views.UserLogoutView.as_view(), name='logout'),
-    url(r'^login-redirect/$', views.admin_login_redirect_view, name='login_redirect'),
 ]

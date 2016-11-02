@@ -158,37 +158,3 @@ class PasswordResetViewTests(TestCase):
         assert self.user.check_password('123') is False
         assert self.user.needs_change_password is False
         assert mocked_service.called is False
-
-
-class AdminLoginRedirect(TestCase):
-
-    def setUp(self):
-        self.user = mommy.make(settings.AUTH_USER_MODEL, is_staff=True, is_superuser=True)
-        self.client.force_login(self.user)
-        self.url = reverse('core_auth:login_redirect')
-
-    def test_not_logged_user_redirect(self):
-        self.client.logout()
-
-        response = self.client.get(self.url, follow=False)
-
-        self.assertEqual(302, response.status_code)
-        self.assertEqual('/', response['Location'])
-
-    def test_not_staff_user_redirect(self):
-        self.user.is_staff = False
-        self.user.save()
-
-        response = self.client.get(self.url)
-
-        self.assertEqual(302, response.status_code)
-        self.assertEqual('/', response['Location'])
-
-    def test_staff_user_redirect(self):
-        response = self.client.get(self.url)
-
-        url = reverse('admin:survey_survey_changelist')
-        self.assertRedirects(response, url)
-
-    def test_settings_is_configured_correctly(self):
-        self.assertEqual(self.url, reverse(settings.LOGIN_REDIRECT_URL))
