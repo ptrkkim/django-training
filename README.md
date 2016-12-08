@@ -39,15 +39,15 @@ From inside the `project` directory, run `pytest`.
 You can also create a `.env` file inside of `config` similar to `.env-example`
 
 # Git Workflow
-0. Create feature branch off of `develop` with the `feature` prefix such as `feature/sso-login`
+0. Create feature branch off of `dev` with the `feature` prefix such as `feature/sso-login`
 1. Develop and commit in this branch
 2. Make sure tests are passing with `pytest` command from the `project` directory
 3. When finished, open a pull request
-4. When reviewed and updated, merge into develop with the following commands or just use the Github merge button and remember deleting the remote branch:
+4. When reviewed and updated, merge into `dev` with the following commands or just use the Github merge button and remember deleting the remote branch:
 
 ```bash
-$ git checkout develop
+$ git checkout dev
 $ git merge --no-ff feature/sso-login
-$ git push origin develop
+$ git push origin dev
 $ git push origin :feature/sso-login  # deletes remote branch
 ```
