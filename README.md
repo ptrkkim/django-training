@@ -19,15 +19,16 @@
 # Dev Setup
 0. Clone this repo: `git clone git@github.com:simplefractal/fractal-django-genie.git`;
 1. Create a new repo on GitHub, change the local git origin to point to the new repo and the push.
-2. Create a virtualenv for Python 3.5: `mkvirtualenv {{ VIRTUAL_ENV_NAME }} -p /usr/bin/python3.5`;
-3. Copy default postactivate: `cp contrib/proj_postactivate $VIRTUAL_ENV/bin/postactivate`;
-4. Edit `$VIRTUAL_ENV/bin/postactivate` for you custom env config (e.g. update DATABASE_URL) and re-run the `workon` command;
-5. Install the packages: `pip install -r dev-requirements.txt`;
-6. Create postgres db: `createdb {{ DATABASE_NAME }}`;
-7. Install redis ([click here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis) if you're using Ubuntu)
-8. Migrations: `python manage.py migrate`
-9. Create admin user: `python manage.py createsuperuser`
-10. Runserver: `python manage.py runserver`
+2. Inside this new repo, erase this README so it will lose this current text;
+3. Create a virtualenv for Python 3.5: `mkvirtualenv {{ VIRTUAL_ENV_NAME }} -p /usr/bin/python3.5`;
+4. Copy default postactivate: `cp contrib/proj_postactivate $VIRTUAL_ENV/bin/postactivate`;
+5. Edit `$VIRTUAL_ENV/bin/postactivate` for you custom env config (e.g. update DATABASE_URL) and re-run the `workon` command;
+6. Install the packages: `pip install -r dev-requirements.txt`;
+7. Create postgres db: `createdb {{ DATABASE_NAME }}`;
+8. Install redis ([click here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis) if you're using Ubuntu)
+9. Migrations: `python manage.py migrate`
+10. Create admin user: `python manage.py createsuperuser`
+11. Runserver: `python manage.py runserver`
 
 # Asynchronous Tasks
 Run django-rq for email sending: `python manage.py rqworker high low default`
