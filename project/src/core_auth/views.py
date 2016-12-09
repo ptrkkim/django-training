@@ -1,7 +1,8 @@
+from rest_framework.authtoken.models import Token
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import RetrieveAPIView
 
 from django.conf import settings
 from django.contrib import admin
@@ -9,6 +10,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, logout
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
+from src.core_auth.forms import UserCreationForm
 from src.core_auth.models import User
 from src.core_auth.serializers import ChangePasswordSerializer, UserSerializer, RequestPasswordChangeSerializer
 
@@ -56,3 +58,16 @@ class PasswordResetView(APIView):
             user.save()
 
         return Response()
+
+
+class SignUpView(APIView):
+
+    def post(self, request):
+        form = UserCreationForm(request.data)
+        if not form.is_valid():
+            return Response(form.errors, status=400)
+
+        user = form.save()
+        token, created = Token.objects.get_or_create(user=user)
+
+        return Response({'token': token.key}, status=201)

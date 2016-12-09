@@ -159,3 +159,32 @@ class PasswordResetViewTests(TestCase):
         assert self.user.check_password('123') is False
         assert self.user.needs_change_password is False
         assert mocked_service.called is False
+
+
+class SignUpViewTests(TestCase):
+
+    def setUp(self):
+        self.url = reverse('account:sign_up')
+        self.data = {'email': 'foo@example.com', 'password1': '123abc', 'password2': '123abc'}
+
+    def test_returns_400_if_invalid_post(self):
+        response = self.client.post(self.url, {})
+        content = response.json()
+
+        assert 400 == response.status_code
+        assert 'email' in content
+
+    def test_create_user(self):
+        response = self.client.post(self.url, self.data)
+
+        assert 201 == response.status_code
+        user = User.objects.get()
+        assert user.email == 'foo@example.com'
+
+    def test_create_token_for_user(self):
+        response = self.client.post(self.url, self.data)
+        user = User.objects.get()
+
+        key = response.json()['token']
+        token = Token.objects.get(key=key)
+        assert token.user == user
