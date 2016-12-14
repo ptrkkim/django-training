@@ -42,6 +42,7 @@ THIRD_PARTY_LIBS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_rq',
+    'raven.contrib.django.raven_compat',
 ]
 
 PROJECT_LIBS = [

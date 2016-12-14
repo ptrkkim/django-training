@@ -15,3 +15,4 @@ django-rq==0.9.2
 click==6.6
 rq==0.6.0
 python-monkey-business==1.0.0
+raven==5.32.0
