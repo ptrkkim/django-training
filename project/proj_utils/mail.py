@@ -24,9 +24,9 @@ def send_email(recipients, subject, body, async=True, **kwargs):
         redis_client.enqueue_default(msg.send)
 
 
-def send_template_email(recipients, subject, template_name, async=True, **kwargs):
+def send_template_email(recipients, subject, template_name, context, async=True, **kwargs):
     template = loader.get_template(template_name)
-    context = Context(context)
+    ctx = Context(context)
 
-    body = template.render(context)
+    body = template.render(ctx)
     send_email(recipients, subject, body, async, **kwargs)
