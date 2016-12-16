@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth import REDIRECT_FIELD_NAME, logout
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.shortcuts import redirect
 
 from src.core_auth.forms import UserCreationForm
@@ -67,7 +68,8 @@ class SignUpView(APIView):
         if not form.is_valid():
             return Response(form.errors, status=400)
 
-        user = form.save()
-        token, created = Token.objects.get_or_create(user=user)
+        with transaction.atomic():
+            user = form.save()
+            token, created = Token.objects.get_or_create(user=user)
 
         return Response({'token': token.key}, status=201)
