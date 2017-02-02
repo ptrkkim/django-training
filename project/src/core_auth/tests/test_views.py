@@ -25,6 +25,14 @@ class UserLoginViewTests(TestCase):
         assert 200 == response.status_code
         assert bool(response.json()['token']) is True
 
+    def test_recover_token_key_with_case_insensitive_email(self):
+        data = self.data
+        data['username'] = 'Foo@Foo.Com'
+        response = self.client.post(self.url, self.data)
+
+        assert 200 == response.status_code
+        assert bool(response.json()['token']) is True
+
     def test_returns_400_if_invalid_login(self):
         response = self.client.post(self.url, {})
         content = response.json()
