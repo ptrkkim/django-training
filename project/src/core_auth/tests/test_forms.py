@@ -1,7 +1,6 @@
 from django.test import TestCase
 
 from src.core_auth.forms import UserCreationForm
-from src.core_auth.models import User
 
 
 class UserCreationFormTests(TestCase):
@@ -34,3 +33,13 @@ class UserCreationFormTests(TestCase):
         assert form.is_valid() is False
 
         assert 'password2' in form.errors
+
+    def test_email_should_be_saved_as_lowercase(self):
+        data = {
+            "email": "Luciano@Simplefractal.Com",
+            "password1": "123123",
+            "password2": "123123",
+        }
+        form = UserCreationForm(data)
+        assert form.is_valid() is True
+        assert "luciano@simplefractal.com" == form.cleaned_data['email']

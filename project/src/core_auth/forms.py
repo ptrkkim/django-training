@@ -10,3 +10,7 @@ class UserCreationForm(DjangoUserCreationForm):
         model = User
         fields = ("email",)
         field_classes = {'email': forms.EmailField}
+
+    def clean_email(self):
+        self.cleaned_data['email'] = self.cleaned_data.get('email').lower()
+        return self.cleaned_data['email']
