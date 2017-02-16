@@ -124,7 +124,7 @@ class UserAdmin(admin.ModelAdmin):
     change_password_form = AdminPasswordChangeForm
     list_display = ('email', 'first_name', 'last_name', 'is_staff')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
-    search_fields = ('username', 'first_name', 'last_name', 'email')
+    search_fields = ('first_name', 'last_name', 'email')
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
 
