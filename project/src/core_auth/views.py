@@ -1,3 +1,4 @@
+from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -26,15 +27,17 @@ class UserLogoutView(APIView):
         return Response()
 
 
-class ChangePasswordViewTests(APIView):
+class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         serializer = ChangePasswordSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        request.user.set_password(serializer.validated_data['password_1'])
-        request.user.save()
-        return Response()
+        if request.user.needs_change_password or request.user.check_password(serializer.validated_data['password']):
+            request.user.set_password(serializer.validated_data['password1'])
+            request.user.save()
+            return Response({'success': True}, status=status.HTTP_200_OK)
+        return Response({'success': False}, status=status.HTTP_403_FORBIDDEN)
 
 
 class UserDetailView(RetrieveAPIView):

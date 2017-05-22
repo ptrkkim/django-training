@@ -32,17 +32,17 @@ class RequestPasswordChangeSerializerTests(TestCase):
 class ChangePasswordSerializerTests(TestCase):
 
     def setUp(self):
-        self.data = {'password_1': '123', 'password_2': '123'}
+        self.data = {'password1': '123', 'password2': '123'}
 
     def test_required_fields(self):
         serializer = ChangePasswordSerializer(data={})
         serializer.is_valid()
 
-        assert 'password_1' in serializer.errors
-        assert 'password_2' in serializer.errors
+        assert 'password1' in serializer.errors
+        assert 'password2' in serializer.errors
 
     def test_passwords_have_to_match(self):
-        self.data['password_1'] = '321321'
+        self.data['password1'] = '321321'
 
         serializer = ChangePasswordSerializer(data=self.data)
         serializer.is_valid()
