@@ -61,7 +61,9 @@ class PasswordResetView(APIView):
             user.force_new_password(new_password)
             user.save()
 
-        return Response()
+        return Response({
+            "email": serializer.validated_data.get('email')
+        })
 
 
 class SignUpView(APIView):
