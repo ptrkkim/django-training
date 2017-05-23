@@ -517,6 +517,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 24, true);
 --
 
 COPY authtoken_token (key, created, user_id) FROM stdin;
+d1fc11280995910ffbe2dc599c447f791cf77e85	2017-05-22 14:18:16.349859-04	1
 \.
 
 
@@ -525,6 +526,7 @@ COPY authtoken_token (key, created, user_id) FROM stdin;
 --
 
 COPY core_auth_user (id, password, last_login, is_superuser, first_name, last_name, is_staff, is_active, date_joined, email, needs_change_password) FROM stdin;
+1	pbkdf2_sha256$30000$acUBH56ac6Pb$RmzxOr+s7TYmJSRgiGa0o5EbWUVLhNzdD7zt08reojo=	\N	f			f	t	2017-05-22 14:18:16.294578-04	existing@user.com	f
 \.
 
 
@@ -547,7 +549,7 @@ SELECT pg_catalog.setval('core_auth_user_groups_id_seq', 1, false);
 -- Name: core_auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('core_auth_user_id_seq', 1, false);
+SELECT pg_catalog.setval('core_auth_user_id_seq', 1, true);
 
 
 --
