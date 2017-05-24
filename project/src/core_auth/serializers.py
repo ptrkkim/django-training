@@ -16,13 +16,14 @@ class RequestPasswordChangeSerializer(serializers.Serializer):
 
 class ChangePasswordSerializer(serializers.Serializer):
 
-    password_1 = serializers.CharField(label="New password", style={'input_type': 'password'})
-    password_2 = serializers.CharField(label="Confirm new password", style={'input_type': 'password'})
+    password = serializers.CharField(label="Old password", style={'input_type': 'password'}, required=False)
+    password1 = serializers.CharField(label="New password", style={'input_type': 'password'})
+    password2 = serializers.CharField(label="Confirm new password", style={'input_type': 'password'})
 
     def validate(self, attrs):
-        password_1, password_2 = attrs['password_1'], attrs['password_2']
+        password1, password2 = attrs['password1'], attrs['password2']
 
-        if not password_1 == password_2:
+        if not password1 == password2:
             raise serializers.ValidationError('Passwords must match.')
 
         return attrs

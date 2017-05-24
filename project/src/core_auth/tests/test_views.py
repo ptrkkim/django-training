@@ -81,7 +81,7 @@ class ChangePasswordViewTests(TestCase):
         self.url = reverse('account:request_password_change')
         self.user = mommy.make(settings.AUTH_USER_MODEL, needs_change_password=True)
         self.client.force_login(self.user)
-        self.data = {'password_1': '123', 'password_2': '123'}
+        self.data = {'password1': '123', 'password2': '123'}
 
     def test_login_required(self):
         self.client.logout()
@@ -95,8 +95,8 @@ class ChangePasswordViewTests(TestCase):
         content = response.json()
 
         assert 400 == response.status_code
-        assert 'password_1' in content
-        assert 'password_2' in content
+        assert 'password1' in content
+        assert 'password2' in content
 
     def test_update_user_password(self):
         response = self.client.post(self.url, self.data)
